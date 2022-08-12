@@ -1,0 +1,44 @@
+cabal-version:      2.4
+name:               blockfrost-api
+version:            0.1.0.0
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            MIT
+license-file:       LICENSE
+author:             tuckpuck
+maintainer:         tucker@tuckertriggs.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+common common-all
+    build-depends: 
+        base ^>=4.14.3.0,
+        wreq ^>=0.5.3.3,
+        lens ^>=5.1.1,
+        aeson ^>=2.1.0.0,
+        text ^>=2.0,
+        split ^>=0.2.3.4,
+        time ^>=1.12.2
+    default-language: Haskell2010
+    ghc-options: -Wall
+
+library
+    import: common-all
+    exposed-modules: Lib
+    hs-source-dirs: src
+    
+executable main
+    import: common-all
+    main-is: Main.hs
+    other-modules: Lib, FetchBlockByBlockHeight, FetchNetworkParameters, FetchAssetByPolicyID, FetchCurrentEpochData, FetchNetworkSupply, FetchNetworkStake, Env
+    -- other-extensions:
+    hs-source-dirs:   app, src
+
+
+
+
+
