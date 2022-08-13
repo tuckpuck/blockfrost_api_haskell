@@ -5,6 +5,7 @@
 module FetchAssetByPolicyID where
 
 import Env ( apiKey )
+import Lib
 
 import Network.Wreq
 import Control.Lens
@@ -75,9 +76,9 @@ data Asset = Asset {
     created_at :: [Char],
     updated_at :: [Char],
     statistical_rank :: Int,
-    statistical_score :: Float,
+    statistical_score :: Double,
     rarity_rank :: Int,
-    rarity_score :: Float,
+    rarity_score :: Double,
     project :: Project,
     attribution :: [Char]
 } deriving (Show, Generic)
@@ -106,9 +107,9 @@ fetchAssetByPolicyID x = do
     putStrLn ("Created at                        " ++ (created_at assetInfo))
     putStrLn ("Updated at                        " ++ (updated_at assetInfo))
     putStrLn ("Statistical Rank                  " ++ show (statistical_rank assetInfo))
-    putStrLn ("Statistical Score                 " ++ show (statistical_score assetInfo))
+    putStrLn ("Statistical Score                 " ++ showFullPrecision (statistical_score assetInfo))
     putStrLn ("Rarity Rank                       " ++ show (rarity_rank assetInfo))
-    putStrLn ("Rarity Score                      " ++ show (rarity_score assetInfo))
+    putStrLn ("Rarity Score                      " ++ showFullPrecision (rarity_score assetInfo))
     putStrLn ("Rarity                            " ++ (rarity traitInfo))
     putStrLn ("Instagram                         " ++ (instagram traitInfo))
     putStrLn ("Twitter                           " ++ (twitter traitInfo))

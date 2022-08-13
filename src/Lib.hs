@@ -7,6 +7,7 @@ import Data.List
 import Data.List.Split
 import Data.Time.Format.ISO8601 
 import Data.Time.Clock.POSIX 
+import Numeric
 
 
 
@@ -55,5 +56,5 @@ lovelaceToAda x = x `div` 1000000
 readAsInteger :: [Char] -> Integer
 readAsInteger s = read s
 
-
-
+showFullPrecision :: Double -> String
+showFullPrecision z = showFFloat Nothing z ""
